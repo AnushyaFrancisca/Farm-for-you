@@ -12,7 +12,6 @@ function Home() {
       {/* Main Content */}
       <div className="content" style={{ position: 'relative', zIndex: 2 }}>
         <h1>Welcome to the Home Page</h1>
-        <p>This is the home page of your React app.</p>
       </div>
     </div>
   );
