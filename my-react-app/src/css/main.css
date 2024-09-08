@@ -1,0 +1,349 @@
+/* #Reset & Basics (Inspired by E. Meyers)
+================================================== */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 90%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* #Basic Styles
+================================================== */
+body {
+  background: #fff;
+  font: 24px/1.6 "brandon-grotesque", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* #Typography
+================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 60px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 36px;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+h5 {
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+h6 {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+p {
+  margin: 0 0 20px 0;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+hr {
+  border: solid #ddd;
+  border-width: 1px 0 0;
+  clear: both;
+  margin: 10px 0 30px;
+  height: 0;
+}
+
+/* #Links
+================================================== */
+a {
+  color: #333;
+  text-decoration: underline;
+  outline: 0;
+}
+
+a:hover, a:focus {
+  color: #000;
+}
+
+p a, p a:visited {
+  line-height: inherit;
+}
+
+/* Reset and body */
+body {
+  background: #111;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh; /* Ensure content stays centered */
+  flex-direction: column; /* Stack items vertically */
+  text-align: center; /* Center all text by default */
+}
+
+/* Background */
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Prevent background from moving */
+  z-index: -1;
+  animation: backgroundFadeIn 3s ease-in-out forwards; /* Fade-in animation */
+}
+
+/* Animation for background fade-in */
+@keyframes backgroundFadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+/* Intro Section */
+#intro {
+  margin-bottom: 20px; /* Add spacing below */
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out forwards; /* Fade-in animation */
+  animation-delay: 1s; /* Delay for effect */
+}
+
+.name {
+  font-size: 35px;
+  letter-spacing: 12px;
+  line-height: 1.5;
+  font-weight: 900;
+}
+
+.byline {
+  font-size: 15px;
+  letter-spacing: 4px;
+  font-weight: 300;
+}
+
+/* Fade in and move up animation for sections */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Explosion and Images Section */
+#explosion {
+  margin-bottom: 20px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out forwards;
+  animation-delay: 2s; /* Delayed to follow the intro */
+}
+
+.explosion-byline {
+  color: white;
+  max-width: 100%;
+  opacity: 1;
+  margin: 0 auto;
+}
+
+ul#domExplosionList li {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 50%;
+  animation: explode 1.5s ease-out infinite;
+}
+
+ul#domExplosionList li:nth-child(odd) {
+  animation-duration: 1s;
+}
+
+@keyframes explode {
+  0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+  }
+}
+
+/* Images Section */
+#images {
+  margin-bottom: 20px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out forwards;
+  animation-delay: 3s; /* Delay for staggered entrance */
+}
+
+.images-byline {
+  color: white;
+  max-width: 100%;
+  opacity: 1;
+  margin: 0 auto;
+}
+
+/* Image Styles */
+.raw-page {
+  width: 45%;
+  border-radius: 6px;
+  box-shadow: inset 0 0 1px rgba(255,255,255,.3);
+  border: 1px solid rgba(0,0,0,.2);
+  background-clip: padding-box;
+  animation: fadeInUp 1.5s ease-in-out forwards; /* Fade-in animation */
+}
+
+.iphone {
+  width: 16%;
+  margin: 0 auto; /* Center the iPhone */
+}
+
+.iphone-frame {
+  width: 100%;
+  height: auto;
+}
+
+.iphone-viewport {
+  width: 100%;
+  height: 69.5%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.iphone-content {
+  width: 100%;
+}
+
+/* Links Section */
+#links {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out forwards;
+  animation-delay: 4s; /* Delay for staggered entrance */
+}
+
+.links-byline {
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid rgba(255,255,255,.5);
+  color: rgba(255,255,255,.8);
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-in-out forwards; /* Fade-in animation */
+  animation-delay: 4.5s;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Error Handling for Small Devices */
+.error {
+  display: none;
+  position: fixed;
+  width: 80%;
+  font-size: 22px;
+  font-weight: 300;
+  text-align: center;
+  top: 30%;
+  left: 10%;
+}
+
+.page-error .error {
+  display: block;
+}
+
+.page-error .container {
+  display: none;
+}
+
+@media all and (max-width: 1000px) {
+  .container {
+      display: none;
+  }
+  .error {
+      display: block;
+      font-size: 22px;
+  }
+}
+
+
