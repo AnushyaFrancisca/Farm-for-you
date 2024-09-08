@@ -1,19 +1,23 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
+import './Header.css'; // Import the CSS file
 
-// function Header() {
-//     return (
-//       <header className="header">
-//         <nav>
-//           <ul>
-//             <li><Link to="/">Home</Link></li>
-//             {/* <li><Link to="/signup">Signup</Link></li> */}
-//             {/* <li><Link to="/about">About</Link></li> */}
-//           </ul>
-//         </nav>
-//       </header>
-//     );
-//   }
-  
-//   export default Header;
-  
+function Header() {
+  return (
+    <div className="header-wrapper"> {/* New container for the header */}
+      <header className="header-container">
+        <nav className="navbar">
+          <Link to="/" className="active">Home</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/signin">Login</Link>
+          <Link to="/signup">Sign Up</Link>
+          {/* <Link to="/about">About Us</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link> */}
+        </nav>
+      </header>
+    </div>
+  );
+}
+
+export default Header;

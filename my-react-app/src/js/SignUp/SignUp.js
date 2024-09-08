@@ -17,6 +17,8 @@ import getSignUpTheme from '../../css/theme2/getSignUpTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import TemplateFrame from './TemplateFrame';
 
+import backgroundImage from '../../images/bg-img.png'; // Adjust the path to your image
+
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -37,16 +39,25 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
-  height: '100%',
-  padding: 4,
-  backgroundImage:
-    'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+  height: '100vh', // Full page height
+  padding: 20,
+  backgroundImage: `linear-gradient(
+      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.2)
+    ), url(${backgroundImage})`, // Using linear gradient for transparency
+  backgroundSize: 'cover', // Make sure the image covers the entire area
+  backgroundPosition: 'center', // Center the image
   backgroundRepeat: 'no-repeat',
   ...theme.applyStyles('dark', {
-    backgroundImage:
-      'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+    backgroundImage: `linear-gradient(
+        rgba(0, 0, 0, 0.4), 
+        rgba(0, 0, 0, 0.4)
+      ), url(${backgroundImage})`, // Dark mode transparency
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   }),
 }));
+
 
 export default function SignUp() {
   const [mode, setMode] = React.useState('light');

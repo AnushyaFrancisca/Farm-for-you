@@ -17,7 +17,10 @@ import ForgotPassword from './ForgotPassword';
 import getSignInTheme from '../../css/theme/getSignInTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import TemplateFrame from './TemplateFrame';
-// import { Link } from 'react-router-dom';
+
+// import your image
+import backgroundImage from '../../images/bg-img.png'; // Adjust the path to your image
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -39,14 +42,22 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
-  height: '100%',
+  height: '100vh', // Full page height
   padding: 20,
-  backgroundImage:
-    'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+  backgroundImage: `linear-gradient(
+      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.2)
+    ), url(${backgroundImage})`, // Using linear gradient for transparency
+  backgroundSize: 'cover', // Make sure the image covers the entire area
+  backgroundPosition: 'center', // Center the image
   backgroundRepeat: 'no-repeat',
   ...theme.applyStyles('dark', {
-    backgroundImage:
-      'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+    backgroundImage: `linear-gradient(
+        rgba(0, 0, 0, 0.4), 
+        rgba(0, 0, 0, 0.4)
+      ), url(${backgroundImage})`, // Dark mode transparency
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   }),
 }));
 
@@ -61,14 +72,11 @@ export default function SignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
-  // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
-    // Check if there is a preferred mode in localStorage
     const savedMode = localStorage.getItem('themeMode');
     if (savedMode) {
       setMode(savedMode);
     } else {
-      // If no preference is found, it uses system preference
       const systemPrefersDark = window.matchMedia(
         '(prefers-color-scheme: dark)',
       ).matches;
@@ -141,7 +149,6 @@ export default function SignIn() {
         <CssBaseline enableColorScheme />
         <SignInContainer direction="column" justifyContent="space-between">
           <Card variant="outlined">
-            {/* <SitemarkIcon /> */}
             <Typography
               component="h1"
               variant="h4"
@@ -210,26 +217,26 @@ export default function SignIn() {
                 label="Remember me"
               />
               <ForgotPassword open={open} handleClose={handleClose} />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  onClick={() => {
-                    validateInputs(); // Call your validation function
-                    window.location.href = '/your-target-page'; // Replace with your target page URL
-                  }}
-                >
-                  Sign in
-                </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                onClick={() => {
+                  validateInputs();
+                  window.location.href = '/your-target-page';
+                }}
+              >
+                Sign in
+              </Button>
               <Typography sx={{ textAlign: 'center' }}>
                 Don&apos;t have an account?{' '}
                 <span>
-                  <Link
+                  <Link to="/signin"
                     href="\SignUp"
                     variant="body2"
                     sx={{ alignSelf: 'center' }}
                   >
-                    Sign up
+                    Sign Up
                   </Link>
                 </span>
               </Typography>
