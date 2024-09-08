@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../css/Home.css'; // Adjust the path if necessary
 import myImage from '../images/bg-img.png'; // Adjust the path to your image
 import cloudImage from '../images/clouds.png'; // The cloud image you want to use
 import logo from '../images/logo1.png'; 
-import Header from '../components/Header';
-
+import Header from '../Components/Header';
 
 function Home() {
   return (
@@ -27,11 +27,14 @@ function Home() {
             height: 'auto' // This maintains aspect ratio
           }} 
         />
+
+        {/* Learn More Button
+        <button className="learn-more-button">
+        <Link to="/about">Learn More</Link>
+        </button> */}
       </div>
     </div>
   );
 }
 
-
 export default Home;
-
