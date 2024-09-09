@@ -13,10 +13,10 @@ function App() {
     <Router>
       <div>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} /> 
-          <Route path="/" element={<Dashboard />} />  {/* remember that the dashboard should open when the user log's in */}
+          {/* <Route path="/" element={<Dashboard />} />   */}
           {/* <Route path="/about" element={<About />} /> */}
 
         </Routes>
