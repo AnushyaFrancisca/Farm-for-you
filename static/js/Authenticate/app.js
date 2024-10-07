@@ -1,8 +1,11 @@
-document.addEventListener('mousemove', e => {
-	Object.assign(document.documentElement, {
-		style: `
-		--move-x: ${(e.clientX - window.innerWidth / 2) * -.005}deg;
-		--move-y: ${(e.clientY - window.innerHeight / 2) * .01}deg;
-		`
-	})
-})
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
+
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});

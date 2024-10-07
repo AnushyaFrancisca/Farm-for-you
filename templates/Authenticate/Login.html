@@ -1,0 +1,206 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  
+  <!-- Static CSS file -->
+  <link rel="stylesheet" href="{% static 'css/authenticate/style.css' %}" />
+  
+  <title>Sign in & Sign up Form</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        
+        <!-- Sign In Form -->
+        <form action="{% url 'userlogin' %}" method="POST" class="sign-in-form">
+          {% csrf_token %}
+    <h2 class="title">Sign in</h2>
+
+    <!-- Username Field -->
+<div class="input-field">
+  <i class="fas fa-user"></i>
+  <input type="text" name="username" placeholder="Username" class="form-control">
+  {% if login_form.username.errors %}
+      <p class="error">{{ login_form.username.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Password Field -->
+<div class="input-field">
+  <i class="fas fa-lock"></i>
+  <input type="password" name="password" placeholder="Password" class="form-control">
+  {% if login_form.password.errors %}
+      <p class="error">{{ login_form.password.errors }}</p>
+  {% endif %}
+</div>
+
+    <!-- Submit Button -->
+    <input type="submit" value="Login" class="btn solid" />
+
+    <!-- Error Message -->
+    {% if msg %}
+        <p class="error">{{ msg }}</p>
+    {% endif %}
+          <p class="social-text">Or Sign in with social platforms</p>
+          
+          <!-- Social media links -->
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+
+        
+          <!-- Sign Up Form -->
+          <form action="{% url 'register' %}" method="POST" class="sign-up-form">
+            {% csrf_token %}
+            <h2 class="title">Sign up</h2>
+        
+            <!-- First Name Field -->
+<div class="input-field">
+  <i class="fas fa-user"></i>
+  <input type="text" name="firstName" placeholder="First Name" class="form-control">
+  {% if signup_form.firstName.errors %}
+      <p class="error">{{ signup_form.firstName.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Last Name Field -->
+<div class="input-field">
+  <i class="fas fa-user"></i>
+  <input type="text" name="lastName" placeholder="Last Name" class="form-control">
+  {% if signup_form.lastName.errors %}
+      <p class="error">{{ signup_form.lastName.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- User  Name Field -->
+<div class="input-field">
+  <i class="fas fa-user"></i>
+  <input type="text" name="username" placeholder="UserName" class="form-control">
+  {% if signup_form.username.errors %}
+      <p class="error">{{ signup_form.username.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Email Field -->
+<div class="input-field">
+  <i class="fas fa-envelope"></i>
+  <input type="email" name="email" placeholder="Mail" value="{{ signup_form.email.value }}" class="form-control">
+  {% if signup_form.email.errors %}
+      <p class="error">{{ signup_form.email.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Phone Field -->
+<div class="input-field">
+  <i class="fas fa-phone"></i>
+  <input type="text" name="phone" placeholder="Phone" class="form-control">
+  {% if signup_form.phone.errors %}
+      <p class="error">{{ signup_form.phone.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Password Field -->
+<div class="input-field">
+  <i class="fas fa-lock"></i>
+  <input type="password" name="password1" class="form-control">
+  {% if signup_form.password1.errors %}
+      <p class="error">{{ signup_form.password1.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Confirm Password Field -->
+<div class="input-field">
+  <i class="fas fa-lock"></i>
+  <input type="password" name="password2" class="form-control">
+  {% if signup_form.password2.errors %}
+      <p class="error">{{ signup_form.password2.errors }}</p>
+  {% endif %}
+</div>
+
+<!-- Role Selection -->
+<div class="input-field">
+  <i class="fas fa-user-tag"></i>
+  <select name="role" class="form-control">
+      <option value="Official">Official</option>
+      <option value="Farmer">Farmer</option>
+      <option value="Others">Others</option>
+  </select>
+</div>
+
+<input type="submit" class="btn solid" value="Sign up">
+  
+  <p class="social-text">Or Sign up with social platforms</p>
+  <div class="social-media">
+    <a href="#" class="social-icon">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" class="social-icon">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" class="social-icon">
+      <i class="fab fa-google"></i>
+    </a>
+    <a href="#" class="social-icon">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+  </div>
+</form>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New to our community?</h3>
+          <p>
+            Discover a world of possibilities! Join us and explore a vibrant
+            community where ideas flourish and connections thrive.
+          </p>
+          <button class="btn transparent" id="sign-up-btn">
+            Sign up
+          </button>
+        </div>
+      </div>
+
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of Our Valued Members</h3>
+          <p>
+            Thank you for being part of our community. Your presence enriches our
+            shared experiences. Let's continue this journey together!
+          </p>
+          <button class="btn transparent" id="sign-in-btn">
+            Sign in
+          </button>
+        </div>
+        <img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png" class="image" alt="Login Illustration" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Static JS for toggling the forms -->
+  <script src="{% static 'js/Authenticate/app.js' %}"></script>
+</body>
+</html>

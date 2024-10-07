@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'farm4u', #user app
     'Authenticate', #home,about,sign-in and sign-up app
-    'Admin_interface' #admin app
+    'Admin_interface', #admin app
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +137,9 @@ AUTHENTICATION_BACKENDS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
+
+# AUTH_USER_MODEL = 'Authenticate.User'
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
