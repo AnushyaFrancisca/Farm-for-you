@@ -31,7 +31,7 @@ def userlogin(request):
 
             elif details.user_type == 'Farmer':
                 login(request, user)
-                return redirect('farmer-profile')
+                return redirect('dashboard_home')
                 
             elif details and details.user_type == 'Others':
                 login(request, user)
@@ -90,7 +90,7 @@ def base(request):
     return render(request, 'Authenticate/Home.html')
 
 def farmer(request):
-    return render(request,'dashboards/farmer_dashboard.html')
+    return render(request,'farmers/farmer_dashboard.html')
 
 def official(request):
-    return render(request,'dashboards/Official_dashboard.html')
+    return render(request, 'official_dashboard.html')

@@ -1,4 +1,4 @@
-@import url("{% static 'https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap' %}");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 
 * {
@@ -16,7 +16,7 @@ input {
 .container {
   position: relative;
   width: 100%;
-  background-image: url("{% static 'img/bg-img.png' %}");
+  background-image: url("../../img/bg-img.png");
   background-size: cover;
   min-height: 100vh;
   overflow: hidden;
