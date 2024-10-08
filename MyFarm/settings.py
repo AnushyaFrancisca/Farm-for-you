@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for MyFarm project.
 
@@ -39,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Farmer', #Farmer app
     'Authenticate', #home,about,sign-in and sign-up app
-    'Admin_interface', #admin app
+    'Admin_interface',, #admin app
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'widget_tweaks',
     'Customer', #Customer app
 ]
 
@@ -134,4 +139,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# AUTH_USER_MODEL = 'Authenticate.User'
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
