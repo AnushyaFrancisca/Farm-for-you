@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'farm4u', #user app
+    'Farmer', #Farmer app
     'Authenticate', #home,about,sign-in and sign-up app
-    'Admin_interface' #admin app
+    'Admin_interface', #admin app
+    'Customer', #Customer app
 ]
 
 MIDDLEWARE = [
