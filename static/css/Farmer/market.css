@@ -1,0 +1,231 @@
+/* Container for the boxes */
+#market-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin-left: 0px;
+    transition: margin-left 0.3s;
+    /* width: calc(100% - 240px); Adjust width based on sidebar */
+    box-sizing: border-box;
+}
+
+#market-container.expanded {
+    margin-left: -170px; /* Adjust this based on your collapsed sidebar width */
+    /* width: calc(100% - 240px); Full width when sidebar is closed */
+}
+
+.product-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 250px; /* Fixed width */
+    height: 310px; /* Fixed height */
+    border: 2px dashed #cccccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    text-align: center;
+    /* padding: 10px; */
+}
+
+.product-box.add-new {
+    border: 2px dashed rgba(85, 50, 7, 0.9);
+    justify-content: center;
+}
+
+.product-box:hover {
+    background-color: rgba(101, 86, 68, 0.2);
+}
+
+/* 
+.product-box {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 250px;
+    height: 300px; 
+    border: 2px dashed #cccccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    text-align: center; 
+} */
+
+/* .add-new {
+    border: 2px dashed rgba(85, 50, 7, 0.9);
+} */
+
+/* .product-box:hover {
+    background-color: rgba(101, 86, 68, 0.2);
+} */
+
+
+.product-details img {
+    width: 250px; /* Ensure the image fits within the box */
+    height: 200px; /* Limit the height */
+    object-fit: cover; /* Ensure the image retains its aspect ratio */
+    border-bottom: 1px solid #ccc;
+    /* padding-bottom: 10px; */
+}
+
+.product-details span {
+    display: block;
+    margin-top: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.edit-delete-buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #f0f0f0;
+}
+
+
+.plus-sign {
+    font-size: 36px;
+    color: rgba(85, 50, 7, 0.9);
+    margin: 0; /* Remove default margin */
+}
+
+.product-box p {
+    margin: 5px 0 0 0; /* Add some margin above the text */
+    font-size: 16px; /* Adjust font size */
+    color: #333;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: rgba(85, 50, 7, 0.9); 
+    padding: 2em; /* Adjusted for better spacing */
+    width: 400px; /* Fixed width */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    text-align: left; /* Align text to the left */
+}
+
+/* Align label and input field beside each other */
+.modal-content .field-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.modal-content label {
+    width: 40%; /* Label occupies 40% of the space */
+    font-weight: 500;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.modal-content input {
+    width: 60%; /* Input occupies the rest */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1em;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Space between the buttons */
+    margin-top: 1em;
+}
+
+.modal-content .close-btn {
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Button styles */
+.modal-content .add-product-btn {
+    background-color: #ffffff; /* Add Product button color */
+    padding: 10px;
+    color: #090b0b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content .add-product-btn:hover {
+    background-color: #8e9392; /* Darker on hover */
+}
+
+/* Input focus */
+.modal-content input:focus {
+    outline: none;
+}
+
+.modal-content input[type="button"] {
+    margin-top: 10px;
+    padding: 10px;
+    width: 150px;
+    background-color: #8e9392;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content input[type="button"]:hover {
+    background-color: #8e9392;
+}
+
+.edit-delete-buttons {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    bottom: 5px;
+}
+
+h2 {
+    color: #fff;
+    text-align: center;
+}

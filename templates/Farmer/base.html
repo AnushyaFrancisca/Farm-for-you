@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Farm4you{% endblock %}</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <link rel="stylesheet" href="{% static 'css/Farmer/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Farmer/market.css' %}">
+
+    <!-- <link rel="stylesheet" href="{% static 'css/User/market.css' %}"> -->
+
+</head>
+<body>
+    <div id="nav-bar">
+        <input id="nav-toggle" type="checkbox"/>
+        <div id="nav-header"><a id="nav-title" target="_blank">FARM4YOU</a>
+            <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+            <hr/>
+        </div>
+        <div id="nav-content">
+            <div class="nav-button "><i class="fas fa-home"></i><span><a href="{% url 'userpage' %}" class="nav-link">Home</a></span></div>
+            <hr/>        
+            <div class="nav-button"><i class="fas fa-tractor"></i><span>FieldName</span></div>
+            <hr/>
+            <div class="nav-button">
+                <i class="fas fa-shopping-cart"></i>
+                <span><a href="{% url 'seller_market' %}" class="nav-link">Market</a></span>
+            </div>
+            <div class="nav-button">
+                <i class="fas fa-chart-line"></i>
+                <span><a href="{% url 'market_dashboard' %}" class="nav-link">Dashboard</a></span>
+            </div>
+            <hr/>
+            <div class="nav-button"><i class="fas fa-upload"></i><span>Camera</span></div>
+            <hr/>
+            <div class="nav-button"><i class="fas fa-plus"></i><span>Add Field</span></div>
+            <hr/>
+            <div class="nav-button">
+                <i class="fas fa-power-off"></i>
+                <span id="logout-button">Logout</span>
+            </div>
+            <div id="nav-content-highlight"></div>
+        </div>
+        <input id="nav-footer-toggle" type="checkbox"/>
+        <div id="nav-footer">
+            <div id="nav-footer-heading">
+                <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"/></div>
+                <div id="nav-footer-titlebox">
+                    <a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank">UserName</a>
+                </div>
+                <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+            </div>
+            <div id="nav-footer-content">
+                <p>Welcome Back!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logout-modall" class="modall">
+        <div class="modall-content">
+            <p>You are attempting to logout</p>
+            <p>Are you sure you want to leave? All your unsaved data will be lost.</p>
+            <div class="modall-buttons">
+                <button id="yes-buttonn" class="modall-button">Yes</button>
+                <button id="no-buttonn" class="modall-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/Farmer/logout.js' %}"></script>
+    <script src="{% static 'js/Farmer/market.js' %}"></script>
+
+
+    <!-- This block is where page-specific content will be inserted -->
+    <div id="content">
+        {% block content %}
+        <!-- Content for each page will be inserted here -->
+        {% endblock %}
+    </div>
+</body>
+</html>
