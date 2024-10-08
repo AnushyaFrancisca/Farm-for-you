@@ -79,7 +79,7 @@ def register(request):
 
         return redirect('userlogin')
 
-    return render(request, 'Authenticate/Login.html')
+    return render(request, 'Authenticate/register.html')
 
 
 def about(request):

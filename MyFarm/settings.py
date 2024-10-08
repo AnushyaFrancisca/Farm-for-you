@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     'farm4u', #user app
     'Authenticate', #home,about,sign-in and sign-up app
     'Admin_interface', #admin app
-    'crispy_forms',
-    'crispy_bootstrap4',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -145,4 +142,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
