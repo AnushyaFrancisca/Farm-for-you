@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Farmer', #Farmer app
     'Authenticate', #home,about,sign-in and sign-up app
-    'Admin_interface',, #admin app
+    'Admin_interface', #admin app
     'crispy_forms',
     'crispy_bootstrap4',
     'widget_tweaks',
