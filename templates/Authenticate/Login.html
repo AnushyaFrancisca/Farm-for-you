@@ -36,7 +36,7 @@
 </div>
 
 <!-- Password Field -->
-<div class="input-field">d
+<div class="input-field">
   <i class="fas fa-lock"></i>
   <input type="password" name="password" placeholder="Password" class="form-control">
   {% if login_form.password.errors %}
@@ -124,7 +124,7 @@
 <!-- Password Field -->
 <div class="input-field">
   <i class="fas fa-lock"></i>
-  <input type="password" name="password1" class="form-control">
+  <input type="password" name="password1" placeholder="Enter your password" class="form-control">
   {% if signup_form.password1.errors %}
       <p class="error">{{ signup_form.password1.errors }}</p>
   {% endif %}
@@ -133,7 +133,7 @@
 <!-- Confirm Password Field -->
 <div class="input-field">
   <i class="fas fa-lock"></i>
-  <input type="password" name="password2" class="form-control">
+  <input type="password" name="password2" placeholder="Confirm Password" class="form-control">
   {% if signup_form.password2.errors %}
       <p class="error">{{ signup_form.password2.errors }}</p>
   {% endif %}

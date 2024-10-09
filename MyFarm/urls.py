@@ -22,8 +22,8 @@ from Authenticate.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('',include('Authenticate.urls')),
-    path('',include('Farmer.urls')),
+    path('',include('Authenticate.urls')),
+    path('Farmer/',include('Farmer.urls')),
     path('Customer/',include('Customer.urls')),
 ]
 
