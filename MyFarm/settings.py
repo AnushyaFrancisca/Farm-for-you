@@ -147,4 +147,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="{% static 'css\authenticate\reg.css' %}">
+    <meta name="robots" content="noindex, follow">
+    <script nonce="0d9e75fc-e7e0-450c-bdaa-0b818c1130f4">
+        try { (function (w, d) { !function (o, p, q, r) { o[q] = o[q] || {}; o[q].executed = []; o.zaraz = { deferred: [], listeners: [] }; o.zaraz.q = []; o.zaraz._f = function (s) { return async function () { var t = Array.prototype.slice.call(arguments); o.zaraz.q.push({ m: s, a: t }) } }; for (const u of ["track", "set", "debug"]) o.zaraz[u] = o.zaraz._f(u); o.zaraz.init = () => { var v = p.getElementsByTagName(r)[0], w = p.createElement(r), x = p.getElementsByTagName("title")[0]; x && (o[q].t = p.getElementsByTagName("title")[0].text); o[q].x = Math.random(); o[q].w = o.screen.width; o[q].h = o.screen.height; o[q].j = o.innerHeight; o[q].e = o.innerWidth; o[q].l = o.location.href; o[q].r = p.referrer; o[q].k = o.screen.colorDepth; o[q].n = p.characterSet; o[q].o = (new Date).getTimezoneOffset(); if (o.dataLayer) for (const B of Object.entries(Object.entries(dataLayer).reduce(((C, D) => ({ ...C[1], ...D[1] })), {}))) zaraz.set(B[0], B[1], { scope: "page" }); o[q].q = []; for (; o.zaraz.q.length;) { const E = o.zaraz.q.shift(); o[q].q.push(E) } w.defer = !0; for (const F of [localStorage, sessionStorage]) Object.keys(F || {}).filter((H => H.startsWith("_zaraz_"))).forEach((G => { try { o[q]["z_" + G.slice(7)] = JSON.parse(F.getItem(G)) } catch { o[q]["z_" + G.slice(7)] = F.getItem(G) } })); w.referrerPolicy = "origin"; w.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(o[q]))); v.parentNode.insertBefore(w, v) };["complete", "interactive"].includes(p.readyState) ? zaraz.init() : o.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document) } catch (err) {
+            console.error('Failed to run Cloudflare Zaraz: ', err)
+            fetch('/cdn-cgi/zaraz/t', {
+                credentials: 'include',
+                keepalive: true,
+                method: 'GET',
+            })
+        };
+    </script>
+    <style>
+        .bg1{
+          background-image: url("{% static 'img\\registration\\reg1.jpg' %}")
+    }
+    
+    </style>
+</head>
+
+<body>
+    {% include 'partials/_header.html' %}
+    {% block content %}
+
+    <div class="wrapper bg1">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="{% static 'img\registration\reg2.jpg' %}" alt>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3>Create your Profile</h3>
+                <div class="form-group">
+                    <input type="text" id='firstName' name='firstName' placeholder="First Name" class="form-control">
+                    <input type="text" id='lastName' name='lastName' placeholder="Last Name" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                    <i class="zmdi zmdi-account"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="text" id='email' name="email" placeholder="Email Address" class="form-control">
+                    <i class="zmdi zmdi-email"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="text" id='phone' name="phone" placeholder="Contact" class="form-control">
+                    <i class="zmdi zmdi-email"></i>
+                </div>
+                <div class="form-wrapper">
+                    <select name="role" id="role" class="form-control">
+                        <option value disabled selected>User Type</option>
+                        <option value="Farmer">Farmer</option>
+                        <option value="Official">Government Official</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="password" id="password" name="password1" placeholder="Password" class="form-control">
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="password" placeholder="Confirm Password" class="form-control">
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+                <button>Register
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"84846911ea9031e1","version":"2024.1.0","token":"cd0b4b3a733644fc843ef0b185f98241"}'
+        crossorigin="anonymous"></script>
+    {% endblock content %}
+</body>
+
+</html>
