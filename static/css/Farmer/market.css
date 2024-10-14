@@ -99,7 +99,7 @@
 }
 
 .edit-btn:hover, .delete-btn:hover {
-    background-color: #f0f0f0;
+    background-color: #517f4e;
 }
 
 
@@ -130,6 +130,10 @@
 }
 
 .modal-content {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     background: rgba(85, 50, 7, 0.9); 
     padding: 2em; /* Adjusted for better spacing */
     width: 400px; /* Fixed width */
@@ -171,7 +175,7 @@
 /* Button container */
 .button-container {
     display: flex;
-    justify-content: space-between; /* Space between the buttons */
+    justify-content: space-around; /* Space between the buttons */
     margin-top: 1em;
 }
 
@@ -228,4 +232,51 @@
 h2 {
     color: #fff;
     text-align: center;
+}
+
+/* Delete Confirmation Modal Styles */
+.delete-modal-content {
+    background-color: #ffffff; /* White background */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #ccc; /* Light border */
+    width: 300px; /* Set width */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow */
+    text-align: center; /* Centered text */
+}
+
+.delete-modal-content h2 {
+    color: black; /* Title color */
+}
+
+.delete-modal-content p {
+    color: black; /* Text color */
+}
+
+/* Button Styles */
+.confirm-btn {
+    padding: 10px 20px; /* Padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    margin: 5px; /* Space between buttons */
+}
+
+#confirm-delete-yes {
+    background-color: rgb(135, 140, 133); /* Red background for Yes */
+    color: white; /* White text */
+}
+
+#confirm-delete-yes:hover {
+    background-color: rgb(204, 49, 49); /* Darker red on hover */
+}
+
+#confirm-delete-no {
+    background-color: rgb(29, 134, 11); /* Green background for No */
+    color: white; /* White text */
+}
+
+#confirm-delete-no:hover {
+    background-color: darkgreen; /* Darker green on hover */
 }

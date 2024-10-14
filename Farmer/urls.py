@@ -6,10 +6,10 @@ urlpatterns = [
     path('dashboard/', market_dashboard, name='market_dashboard'),
     path('market/',seller_market,name='market'),
     path('logout/',logout_farmer,name='logout_farmer'),
-    # path('add-product/', add_product, name='add_product'),
-    # path('edit-product/<int:product_id>/', edit_product, name='edit_product'),
-    # path('delete-product/<int:product_id>/', delete_product, name='delete_product'),
-
+    path('market/add/', market_view, name='market_view'),  # Updated to a unique URL pattern
+    path('market/delete_product/<int:product_id>/', delete_product, name='delete_product'),
+    path('create_product/', create_product, name='create_product'),
+    path('update_product/<int:product_id>/', update_product, name='update_product'),
     
 ]
 
