@@ -4,4 +4,3 @@ from django.shortcuts import render
 
 def customer_market(request):
     return render(request, 'Customer/customer_market.html')
-

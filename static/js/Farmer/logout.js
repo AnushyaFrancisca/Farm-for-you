@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Action for 'Yes' button (e.g., redirect to logout URL)
     yesButton.addEventListener("click", function() {
-      window.location.href = "/logout"; // Adjust to your actual logout URL
+      window.location.href = "/Farmer/logout/"; // Adjust to your actual logout URL
     });
 
     // Close the modal when clicking outside the modal content
