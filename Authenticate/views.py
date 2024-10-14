@@ -31,7 +31,7 @@ def userlogin(request):
 
             elif details.user_type == 'Farmer':
                 login(request, user)
-                return redirect('dashboard_home')
+                return redirect('userpage')
                 
             elif details and details.user_type == 'Others':
                 login(request, user)
