@@ -1,16 +1,15 @@
-
 {% load static %}
 <!DOCTYPE html> 
-   <!-- <html lang="en">
+<html lang="en">
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <! --=============== REMIXICONS ===============-->
+      <!--=============== REMIXICONS ===============-->
       <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
       <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="{% static 'css\authenticate\style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/authenticate/style.css' %}">
 
       <title>Login Form</title>
    </head>
@@ -18,12 +17,8 @@
       {% include 'partials/_header.html' %}
       {% block content %}
       <div class="login">
-         
-         <img src="{% static 'img\layer-1.jpg' %}" alt="login image" class="login__img">
-         <img src="{% static 'img\layer-2.png' %}" alt="login image" class="login__img">
-         <img src="{% static 'img\layer-5.png' %}" alt="login image" class="login__img">
-         <img src="{% static 'img\layer-6.png' %}" alt="login image" class="login__img">
-         
+         <img src="{% static 'img/bg-img.png' %}" alt="login image" class="login__img">
+
          <form method="POST" class="login__form" enctype="multipart/form-data">
             {% csrf_token %}
             <h1 class="login__title">Welcome</h1>
@@ -31,9 +26,7 @@
             <div class="login__content">
                <div class="login__box">
                   <i class="ri-user-3-line login__icon"></i>
-                  
                   <div class="login__box-input">
-                     
                      <input type="text" required class="login__input" name="username" id="login-email" placeholder=" ">
                      <label for="login-email" class="login__label">Username</label>
                   </div>
@@ -41,9 +34,7 @@
 
                <div class="login__box">
                   <i class="ri-lock-2-line login__icon"></i>
-
                   <div class="login__box-input">
-               
                      <input type="password" required class="login__input" name="password" id="login-pass" placeholder=" ">
                      <label for="login-pass" class="login__label">Password</label>
                      <i class="ri-eye-off-line login__eye" id="login-eye"></i>
@@ -56,7 +47,6 @@
                   <input type="checkbox" class="login__check-input" id="login-check">
                   <label for="login-check" class="login__check-label">Remember me</label>
                </div>
-
                <a href="#" class="login__forgot">Forgot Password?</a>
             </div>
 
@@ -67,9 +57,27 @@
             </p>
          </form>
       </div>
-      
-      <!--=============== MAIN JS ===============-->
-      <script src="{% static 'js/main.js' %}"></script>
+
+      <!-- Inline JavaScript for toggling password visibility -->
+      <script>
+         // Ensure the DOM is fully loaded before running the script
+         document.addEventListener('DOMContentLoaded', function() {
+            // Select the eye icon and the password input field
+            const eyeIcon = document.getElementById('login-eye');
+            const passwordInput = document.getElementById('login-pass');
+
+            // Add a click event listener to the eye icon
+            eyeIcon.addEventListener('click', () => {
+               // Toggle the input type between 'password' and 'text'
+               const inputType = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+               passwordInput.setAttribute('type', inputType);
+               
+               // Toggle the eye icon between 'eye' and 'eye-off'
+               eyeIcon.classList.toggle('ri-eye-off-line');
+               eyeIcon.classList.toggle('ri-eye-line');
+            });
+         });
+      </script>
       {% endblock content %}
    </body>
 </html>

@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # Default primary key field type
@@ -140,7 +140,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Create a 'media' directory in your project root
 
 
 # AUTH_USER_MODEL = 'Authenticate.User'
