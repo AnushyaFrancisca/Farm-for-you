@@ -1,0 +1,49 @@
+{% extends "Farmer/base.html" %}
+{% load static %}
+
+{% block title %}Market - Farm4you{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/User/market.css' %}">
+<div id="market-container">
+    <!-- The initial box with a plus sign -->
+    <div class="product-box add-new" id="add-new-box">
+        <span class="plus-sign">+</span>
+        <p>Add New Product</p> <!-- Added text below the plus sign -->
+    </div>
+</div>
+
+<!-- Modal for adding product details -->
+<div id="product-modal" class="modal">
+    <div class="modal-content">
+        <h2>Add Product Details</h2>
+        <form id="product-form">
+            <div class="field-container">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" required>
+            </div>
+
+            <div class="field-container">
+                <label for="product-quantity">Quantity (in kg):</label>
+                <input type="number" id="product-quantity" name="product-quantity" min="0.5" step="0.5" required>
+            </div>
+
+            <div class="field-container">
+                <label for="product-price">Cost per Half kg:</label>
+                <input type="number" id="product-price" name="product-price" step="0.01" required>
+            </div>
+
+            <div class="field-container">
+                <label for="product-image">Product Image:</label>
+                <input type="file" id="product-image" name="product-image" accept="image/*" required>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="add-product-btn">Add Product</button>
+                <button type="button" class="close-btn">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
