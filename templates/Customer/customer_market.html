@@ -1,0 +1,102 @@
+{% extends "Customer/cust_base.html" %}
+{% load static %}
+
+{% block title %}Market - Farm4you{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/Farmer/market.css' %}">
+<style>
+    /* Default content layout when sidebar is open */
+    #content {
+        margin-left: 270px; /* Adjust based on sidebar width */
+        transition: margin-left 0.3s ease;
+    }
+
+    /* Adjust content when sidebar is closed */
+    #content.collapsed {
+        margin-left: 90px; /* Adjust to match collapsed sidebar width */
+    }
+
+    /* Quantity control styling */
+    .quantity-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 13px;
+    }
+    .minus-btn, .plus-btn {
+        background-color: rgb(71, 44, 9);
+        color: rgb(255, 255, 255);
+        border: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .quantity-display {
+        font-size: 16px;
+        width: 30px;
+        text-align: center;
+    }
+</style>
+
+<div id="market-container">
+    <!-- Loop through products to display them -->
+    {% for product in products %}
+    <div class="product-box">
+        <div class="product-details">
+            <img src="{{ product.image.url }}" alt="Product Image">
+            <span><strong>Product:</strong> {{ product.name }}</span>
+            <span><strong>Price:</strong> ₹{{ product.price }}/half kg</span>
+
+            <!-- Quantity control for each product -->
+            <div class="quantity-container">
+                <button class="minus-btn">-</button>
+                <span class="quantity-display">0</span>
+                <button class="plus-btn">+</button>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No products available at the moment.</p>
+    {% endfor %}
+</div>
+
+<script src="{% static 'js/Farmer/market.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const navToggle = document.getElementById("nav-toggle");
+        const content = document.getElementById("content");
+
+        // Handle sidebar collapse and expand
+        navToggle.addEventListener("change", function () {
+            if (navToggle.checked) {
+                content.classList.add("collapsed"); // Collapse sidebar
+            } else {
+                content.classList.remove("collapsed"); // Expand sidebar
+            }
+        });
+
+        // Quantity increment and decrement functionality
+        document.querySelectorAll('.quantity-container').forEach(container => {
+            const minusBtn = container.querySelector('.minus-btn');
+            const plusBtn = container.querySelector('.plus-btn');
+            const display = container.querySelector('.quantity-display');
+
+            // Increment quantity
+            plusBtn.addEventListener('click', () => {
+                let currentValue = parseInt(display.textContent);
+                display.textContent = currentValue + 1;
+            });
+
+            // Decrement quantity, ensuring it doesn't go below 0
+            minusBtn.addEventListener('click', () => {
+                let currentValue = parseInt(display.textContent);
+                if (currentValue > 0) {
+                    display.textContent = currentValue - 1;
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -19,22 +19,16 @@
             <hr/>
         </div>
         <div id="nav-content">
-            <div class="nav-button "><i class="fas fa-home"></i><span><a href="{% url 'userpage' %}" class="nav-link">Home</a></span></div>
+            <div class="nav-button "><i class="fas fa-home"></i><span><a href="{% url 'others-profile' %}" class="nav-link">Home</a></span></div>
             <hr/>        
-            <div class="nav-button"><i class="fas fa-tractor"></i><span>FieldName</span></div>
-            <hr/>
+            <div class="nav-button">
+                <i class="fas fa-solid fa-seedling"></i>
+                <span><a href="{% url 'customer_market' %}" class="nav-link">Market</a></span>
+            </div>
             <div class="nav-button">
                 <i class="fas fa-shopping-cart"></i>
-                <span><a href="{% url 'market' %}" class="nav-link">Market</a></span>
+                <span><a href="{% url 'cart' %}" class="nav-link">Cart</a></span>
             </div>
-            <div class="nav-button">
-                <i class="fas fa-chart-line"></i>
-                <span><a href="{% url 'market_dashboard' %}" class="nav-link">Dashboard</a></span>
-            </div>
-            <hr/>
-            <div class="nav-button"><i class="fas fa-upload"></i><span>Camera</span></div>
-            <hr/>
-            <div class="nav-button"><i class="fas fa-plus"></i><span>Add Field</span></div>
             <hr/>
             <div class="nav-button">
                 <i class="fas fa-power-off"></i>

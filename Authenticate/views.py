@@ -15,8 +15,6 @@ def userlogin(request):
 
         user =  authenticate(request,username=username, password=password)
        
-        
-
         if user is not None and user.is_active:
 
             if user.is_superuser:
@@ -25,11 +23,11 @@ def userlogin(request):
 
             details = userdetails.objects.get(user = user)
            
-            if details.user_type == 'Official':
-                login(request, user)
-                return redirect('official-profile')
+            # if details.user_type == 'Official':
+            #     login(request, user)
+            #     return redirect('official-profile')
 
-            elif details.user_type == 'Farmer':
+            if details.user_type == 'Farmer':
                 login(request, user)
                 return redirect('userpage')
                 
@@ -72,11 +70,6 @@ def register(request):
         user_details = userdetails(user_id=user.id, user_phone=phone, user_type=role)
         user_details.save()
         user_model = User.objects.get(username=username)
-        # new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
-        # new_profile.save()
-        # print(f"User details created: {user_details.__dict__}")
-
-
         return redirect('userlogin')
 
     return render(request, 'Authenticate/register.html')
