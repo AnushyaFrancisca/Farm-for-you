@@ -8,13 +8,25 @@
 <style>
     /* Default content layout when sidebar is open */
     #content {
-        margin-left: 270px; /* Adjust based on sidebar width */
+        margin-left: 270px;
         transition: margin-left 0.3s ease;
     }
-
-    /* Adjust content when sidebar is closed */
     #content.collapsed {
-        margin-left: 90px; /* Adjust to match collapsed sidebar width */
+        margin-left: 90px;
+    }
+
+    /* Styling for Add button */
+    .add-btn {
+        margin-right: -100px;
+        background-color: #0d782f;
+        color: white;
+        border: none;
+        padding: 5px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 13px;
+        position: relative;
     }
 
     /* Quantity control styling */
@@ -23,7 +35,16 @@
         align-items: center;
         gap: 10px;
         margin-top: 13px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
     }
+    .quantity-container.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Buttons and quantity display */
     .minus-btn, .plus-btn {
         background-color: rgb(71, 44, 9);
         color: rgb(255, 255, 255);
@@ -37,6 +58,7 @@
         font-size: 16px;
         width: 30px;
         text-align: center;
+        transition: transform 0.3s ease;
     }
 </style>
 
@@ -49,10 +71,11 @@
             <span><strong>Product:</strong> {{ product.name }}</span>
             <span><strong>Price:</strong> ₹{{ product.price }}/half kg</span>
 
-            <!-- Quantity control for each product -->
+            <!-- Add button and Quantity control for each product -->
+            <button class="add-btn">Add</button>
             <div class="quantity-container">
                 <button class="minus-btn">-</button>
-                <span class="quantity-display">0</span>
+                <span class="quantity-display">1</span>
                 <button class="plus-btn">+</button>
             </div>
         </div>
@@ -71,29 +94,45 @@
         // Handle sidebar collapse and expand
         navToggle.addEventListener("change", function () {
             if (navToggle.checked) {
-                content.classList.add("collapsed"); // Collapse sidebar
+                content.classList.add("collapsed");
             } else {
-                content.classList.remove("collapsed"); // Expand sidebar
+                content.classList.remove("collapsed");
             }
         });
 
-        // Quantity increment and decrement functionality
-        document.querySelectorAll('.quantity-container').forEach(container => {
-            const minusBtn = container.querySelector('.minus-btn');
-            const plusBtn = container.querySelector('.plus-btn');
-            const display = container.querySelector('.quantity-display');
+        // Handle the "Add" button, quantity increment, and decrement functionality
+        document.querySelectorAll('.product-box').forEach(productBox => {
+            const addBtn = productBox.querySelector('.add-btn');
+            const quantityContainer = productBox.querySelector('.quantity-container');
+            const minusBtn = productBox.querySelector('.minus-btn');
+            const plusBtn = productBox.querySelector('.plus-btn');
+            const display = productBox.querySelector('.quantity-display');
 
-            // Increment quantity
+            // Show quantity container on "Add" button click
+            addBtn.addEventListener('click', () => {
+                addBtn.style.display = 'none';
+                quantityContainer.classList.add('active');
+                display.textContent = 1;
+            });
+
+            // Increment quantity with rolling effect
             plusBtn.addEventListener('click', () => {
                 let currentValue = parseInt(display.textContent);
                 display.textContent = currentValue + 1;
+                display.style.transform = 'translateY(-10px)';
+                setTimeout(() => display.style.transform = 'translateY(0)', 300);
             });
 
-            // Decrement quantity, ensuring it doesn't go below 0
+            // Decrement quantity, hide controls if it reaches 1
             minusBtn.addEventListener('click', () => {
                 let currentValue = parseInt(display.textContent);
-                if (currentValue > 0) {
+                if (currentValue > 1) {
                     display.textContent = currentValue - 1;
+                    display.style.transform = 'translateY(10px)';
+                    setTimeout(() => display.style.transform = 'translateY(0)', 300);
+                } else {
+                    quantityContainer.classList.remove('active');
+                    addBtn.style.display = 'inline-block';
                 }
             });
         });
