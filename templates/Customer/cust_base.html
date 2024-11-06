@@ -6,7 +6,7 @@
     <title>{% block title %}Farm4you{% endblock %}</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
     <link rel="stylesheet" href="{% static 'css/Farmer/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Farmer/market.css' %}">
+    
 
     <!-- <link rel="stylesheet" href="{% static 'css/User/market.css' %}"> -->
 
@@ -28,6 +28,10 @@
             <div class="nav-button">
                 <i class="fas fa-shopping-cart"></i>
                 <span><a href="{% url 'view_cart' %}" class="nav-link">Cart</a></span>
+            </div>
+            <div class="nav-button">
+                <i class="fas fa-box"></i>
+                <span><a href="{% url 'user_orders' %}" class="nav-link">Orders</a></span>
             </div>
             <hr/>
             <div class="nav-button">
@@ -67,10 +71,8 @@
             </div>
         </div>
     </div>
-
+    
     <script src="{% static 'js/Farmer/logout.js' %}"></script>
-    <script src="{% static 'js/Farmer/market.js' %}"></script>
-
 
     <!-- This block is where page-specific content will be inserted -->
     <div id="content">
