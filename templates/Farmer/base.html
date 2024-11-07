@@ -21,7 +21,10 @@
         <div id="nav-content">
             <div class="nav-button "><i class="fas fa-home"></i><span><a href="{% url 'userpage' %}" class="nav-link">Home</a></span></div>
             <hr/>        
-            <div class="nav-button"><i class="fas fa-tractor"></i><span>FieldName</span></div>
+            <div class="nav-button">
+                <i class="fas fa-tractor"></i>
+                <span><a href="{% url 'sensor_chart' %}" class="nav-link">Field analytics</a></span>
+            </div>
             <hr/>
             <div class="nav-button">
                 <i class="fas fa-shopping-cart"></i>

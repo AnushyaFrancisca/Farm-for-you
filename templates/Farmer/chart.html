@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature and Humidity Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <div id="container" style="width: 100%; height: 400px;"></div>
+
+    <script>
+        // Example data passed from the Django view (replace this with real data from the server)
+        var temperatureData = {{ temperature_data|safe }};
+        var humidityData = {{ humidity_data|safe }};
+        var timestamps = {{ timestamps|safe }};
+
+        // Highcharts configuration
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Temperature and Humidity Readings'
+            },
+            xAxis: {
+                categories: timestamps,
+                title: {
+                    text: 'Time'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Values'
+                }
+            },
+            series: [{
+                name: 'Temperature (°C)',
+                data: temperatureData
+            }, {
+                name: 'Humidity (%)',
+                data: humidityData
+            }]
+        });
+    </script>
+</body>
+</html>

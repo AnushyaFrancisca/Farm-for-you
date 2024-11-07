@@ -7,6 +7,8 @@ from .forms import ProductForm
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
+from .models import SensorData
+import json
 import os
 
 
@@ -102,3 +104,32 @@ def update_product(request, product_id):
         return JsonResponse({'status': 'success'})
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+def sensor_chart(request):
+    # Sample data to be passed to the template
+        # Get the latest sensor data
+    # sensor_data = SensorData.objects.all().order_by('-timestamp')[:20]  # Last 20 entries
+    # context = {
+    #     'sensor_data': sensor_data,
+    # }
+    # return render(request, 'sensor_data/chart.html', context)
+    context = {
+        'temperature_data': [22, 23, 24],  # Dummy temperature data
+        'humidity_data': [50, 55, 60],     # Dummy humidity data
+        'timestamps': ['10:00', '10:01', '10:02']  # Sample timestamps
+    }
+    return render(request, 'Farmer/chart.html', context)
+
+def save_sensor_data(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        temperature = data.get('temperature')
+        humidity = data.get('humidity')
+
+        # Save the data in the database
+        sensor_data = SensorData(temperature=temperature, humidity=humidity)
+        sensor_data.save()
+
+        return JsonResponse({'status': 'success', 'message': 'Data saved successfully'})
+
+    return JsonResponse({'status': 'fail', 'message': 'Invalid request'}, status=400)
