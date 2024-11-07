@@ -1,2 +1,50 @@
 {% extends "Customer/cust_base.html" %}
+
 {% load static %}
+
+{% block title %}Cart - Farm4you{% endblock %}
+
+{% block content %}
+
+<div style="font-size: 1.2rem; font-weight: bold; margin-top: 20px; margin-bottom: 10px;">
+    <div class="cart-footer total-price">
+        
+    </div>
+</div>
+
+<div style="display: flex; align-items: self-end; gap: 720px; margin-bottom: 20px;">
+    <h1 style="margin: 0;">Your Shopping Cart</h1>
+    <a href="{% url 'customer_market' %}" class="continue-shopping" style="display: flex; align-items: center; padding: 10px 20px; color: #fff; background-color: #1a6d1a; text-decoration: none; border-radius: 5px;">
+        <i class="fa fa-arrow-left" style="margin-right: 5px;"></i> Continue Shopping
+    </a>
+</div>
+
+<div class="cart-container">
+    {% if cart_items %}
+        <div class="product-list" style="gap: 10px;">
+            {% for item in cart_items %}
+                <div class="product-item" style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; gap: 10px; margin-bottom: 10px;">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="product-image" style="flex-shrink: 0; width: 70px; height: 70px; border-radius: 5px; object-fit: cover;">
+                    <p class="product-name" style="flex: 2; font-weight: bold; font-size: 1rem; margin: 0;">{{ item.product.name }}</p>
+                    <p class="product-quantity" style="flex: 1; text-align: center; margin: 0;">Qty: {{ item.quantity }}</p>
+                    <p class="product-price" style="flex: 1; text-align: center; font-weight: bold; margin: 0;">₹{{ item.product.price }}</p>
+                    <a href="{% url 'remove_from_cart' item.id %}" class="remove-link" style="flex: 1; color: #e74c3c; text-decoration: none;">Remove</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-footer" style="flex-direction: column; align-items: flex-end; gap: 10px; margin-top: 20px;">
+            <p class="total-price" style="font-size: 1.2rem; font-weight: bold; margin: 0;">Total Price: ₹{{ total_price }}</p>
+            
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="{% url 'checkout' %}" class="proceed-payment" style="display: flex; align-items: center; padding: 10px 20px; background-color: #1a6d1a; color: #fff; text-decoration: none; border-radius: 5px;">
+                    <i class="fa fa-credit-card" style="margin-right: 5px;"></i> Proceed to Payment
+                </a>                            
+            </div>
+        </div>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

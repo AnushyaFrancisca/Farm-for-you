@@ -65,14 +65,14 @@
 <div id="market-container">
     <!-- Loop through products to display them -->
     {% for product in products %}
-    <div class="product-box">
+    <div class="product-box" data-product-id="{{ product.id }}">
         <div class="product-details">
             <img src="{{ product.image.url }}" alt="Product Image">
             <span><strong>Product:</strong> {{ product.name }}</span>
             <span><strong>Price:</strong> ₹{{ product.price }}/half kg</span>
 
             <!-- Add button and Quantity control for each product -->
-            <button class="add-btn">Add</button>
+            <button class="add-btn" onclick="window.location.href='{% url 'add_to_cart' product.id %}'">Add to Cart</button>
             <div class="quantity-container">
                 <button class="minus-btn">-</button>
                 <span class="quantity-display">1</span>
@@ -86,6 +86,7 @@
 </div>
 
 <script src="{% static 'js/Farmer/market.js' %}"></script>
+<script src="{% static 'js/Customer/cart.js' %}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const navToggle = document.getElementById("nav-toggle");
@@ -138,4 +139,7 @@
         });
     });
 </script>
+<script src="{% static 'js/Farmer/logout.js' %}"></script>
+<script src="{% static 'js/Farmer/market.js' %}"></script>
+    
 {% endblock %}
