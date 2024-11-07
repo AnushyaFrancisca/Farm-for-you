@@ -8,8 +8,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
 import os
-
-
+from django.db.models import Count, Sum
+from Farmer.models import Product
+from Customer.models import ProductSales
+from Customer.models import Order, CartItem
+from datetime import datetime
 
 # Create your views here.
 
@@ -102,3 +105,40 @@ def update_product(request, product_id):
         return JsonResponse({'status': 'success'})
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+
+def seller_dashboard(request):
+    # Get the current month
+    current_month = datetime.now().month
+
+    # Monthly sales calculation (total sales for the current month)
+    monthly_sales = Order.objects.filter(
+        order_date__month=current_month,
+        user=request.user
+    ).aggregate(total_sales=Sum('total_price'))['total_sales'] or 0
+
+    # Total products sold: Sum of quantities from CartItem for the user's orders
+    # In seller_dashboard view:
+    total_products_sold = CartItem.objects.filter(user=request.user).aggregate(total_products=Sum('quantity'))
+
+
+    # Total money earned
+    money_earned = Order.objects.filter(user=request.user).aggregate(
+        total_money=Sum('total_price')
+    )['total_money'] or 0
+
+    # Fetch product sales data (how many products sold)
+    product_sales = CartItem.objects.filter(user=request.user).values(
+        'product__name'
+    ).annotate(
+        total_quantity=Sum('quantity')
+    ).order_by('-total_quantity')
+
+    context = {
+        'monthly_sales': monthly_sales,
+        'total_products_sold': total_products_sold,
+        'money_earned': money_earned,
+        'product_sales': product_sales,
+    }
+
+    return render(request, 'Farmer/market_dashboard.html', context)

@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from Farmer.models import Product  
-from .models import CartItem, Order
+from .models import CartItem, Order, ProductSales
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-
 from django.contrib import messages
 
 
@@ -15,7 +14,6 @@ def profile(request):
 def customer_market(request):
     products = Product.objects.all()  # Fetch all products
     return render(request, 'Customer/customer_market.html', {'products': products})
-
 
 def view_cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
@@ -41,7 +39,9 @@ def confirm_order(request):
         name = request.POST.get('name')
         contact = request.POST.get('contact')
         location = request.POST.get('location')
-        total_price = sum(item.product.price * item.quantity for item in CartItem.objects.filter(user=request.user))
+        cart_items = CartItem.objects.filter(user=request.user)
+        
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
 
         # Create the order
         order = Order.objects.create(
@@ -52,8 +52,22 @@ def confirm_order(request):
             total_price=total_price
         )
         
+        # Add products from cart to the order and update stock
+        for item in cart_items:
+            order.products.add(item.product)  # Associate the product with the order
+
+            # Optionally, update the product's stock
+            product = item.product
+            product.quantity -= item.quantity  # Reduce the stock by the quantity sold
+            product.save()  # Save the updated product
+
+            # Update the total sold quantity for the product
+            product_sales, created = ProductSales.objects.get_or_create(product=item.product)
+            product_sales.total_sold += item.quantity  # Add the quantity sold to the total
+            product_sales.save()  # Save the updated sales record
+
         # Clear the cart after order is confirmed
-        CartItem.objects.filter(user=request.user).delete()
+        cart_items.delete()
 
         # Show a success message
         messages.success(request, f"Order confirmed for {name}. We will contact you at {contact}.")
@@ -62,7 +76,6 @@ def confirm_order(request):
         return render(request, 'Customer/checkout.html', {'order_confirmed': True})
     
     return redirect('view_cart')  # If it's not a POST request, redirect back to cart
-
 
 def checkout(request):
     if request.method == 'POST':
